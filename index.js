@@ -5,6 +5,8 @@ import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import { v2 as cloudinary } from 'cloudinary'
 import fileUpload from 'express-fileupload'
+import cors from 'cors'
+import rateLimiter from 'express-rate-limit'
 
 // Middlewares
 import errorHandler from './middlewares/error-handler.js'
@@ -17,6 +19,11 @@ import productRoutes from './routes/product.js'
 import reviewRoutes from './routes/review.js'
 import orderRoutes from './routes/order.js'
 
+// Security packages
+import mongoSanitize from 'express-mongo-sanitize'
+import helmet from 'helmet'
+import xss from 'xss-clean'
+
 dotenv.config()
 await connectDB()
 
@@ -28,6 +35,18 @@ cloudinary.config({
 })
 
 const app = express()
+
+app.use(
+  rateLimiter({
+    windowMs: 15 * 60 * 1000,
+    max: 60
+  })
+)
+
+app.use(helmet())
+app.use(cors())
+app.use(xss())
+app.use(mongoSanitize())
 
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }))
