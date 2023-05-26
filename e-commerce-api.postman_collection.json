@@ -1,0 +1,856 @@
+{
+	"info": {
+		"_postman_id": "698afcb5-451d-475c-912d-acad6620afcc",
+		"name": "e-commerce-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16856338"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"abdallah\",\n    \"email\": \"abdallahmyaltanna@gmail.com\",\n    \"password\": \"Aa12341234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "verificationToken",
+									"value": "fb2edb06e95e90e96114f405b81bdd2e2b6871e8d11dd5a16ad6b06bd6b21a75450ea329c25b3272",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "abdallahmyaltanna@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/auth/verify-email",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"verify-email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forget password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "abdallahmyaltanna@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/auth/forget-password",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"forget-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "abdallahmyaltanna@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "4503e784a5549902ac770de8d4ab6c43",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "100200300400500",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/auth/reset-password",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"abdallahmyaltanna@gmail.com\",\n    \"password\": \"Aa12341234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"abdallahmyaltanna@gmail.com\",\n    \"password\": \"Aa12334444\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/logout",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "Get All Users",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/user",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer"
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Show Me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/user/showMe",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								"showMe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/user/646cf345fa99c11acbbb6fd8",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								"646cf345fa99c11acbbb6fd8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Ahmed tanna\",\n    \"email\": \"mohammedtanna@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/user/updateUser",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								"updateUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"oldPassword\": \"Aa12341234\",\n    \"newPassword\": \"Aa123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/user/updateUserPassword",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								"updateUserPassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "admin",
+					"item": [
+						{
+							"name": "Create product",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Apple airpods",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "200",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "This is the best headphones in the world",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "office",
+											"type": "text"
+										},
+										{
+											"key": "company",
+											"value": "apple",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}/product",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"product"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upload product image",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/abdallahtanna/Downloads/me.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}/product/646de0c3226df1e6cdb889e3/uploadImage",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"product",
+										"646de0c3226df1e6cdb889e3",
+										"uploadImage"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update product",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Apple mac 14 inch m1 one pro",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}/product/646dcb1e76be2e07cefaa657",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"product",
+										"646dcb1e76be2e07cefaa657"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete product",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/product/646dcb1e76be2e07cefaa657",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"product",
+										"646dcb1e76be2e07cefaa657"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/product",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/product/646de0c3226df1e6cdb889e3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product",
+								"646de0c3226df1e6cdb889e3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get product reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/product/646de0c3226df1e6cdb889e3/reviews",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product",
+								"646de0c3226df1e6cdb889e3",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "review",
+			"item": [
+				{
+					"name": "Create review",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "product",
+									"value": "646de0c3226df1e6cdb889e3",
+									"type": "text"
+								},
+								{
+									"key": "rating",
+									"value": "2.5",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Macbook pro",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "This product is too expensive so i can not buy it in the future, i prefer to save my money rather than buy this product.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/review",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"review"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/review",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"review"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get review",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/review/646f0040305332ab64409ad0",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"review",
+								"646f0040305332ab64409ad0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update review",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "This product is so satisfying",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "Please tell me how can sell this product",
+									"type": "text"
+								},
+								{
+									"key": "rating",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/review/646de17c21af4f5298a47f98",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"review",
+								"646de17c21af4f5298a47f98"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete review",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/review/646de17c21af4f5298a47f98",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"review",
+								"646de17c21af4f5298a47f98"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "Get all orders",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/order",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"order"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tax\": \"100\",\n    \"shippingFee\": \"200\",\n    \"items\": [\n        {\n            \"name\": \"Apple airpods\",\n            \"image\":  \"/uploads/example.jpeg\",\n            \"price\": 200,\n            \"amount\": 3,\n            \"product\": \"6470e33789e5bdb03e525e83\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/order",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/order/showMyOrders",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"order",
+								"showMyOrders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single order by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/order/6470e6f4805464ca19323841",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"order",
+								"6470e6f4805464ca19323841"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update order",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "paymentIntentId",
+									"value": "304030530590",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/order/6470e6f4805464ca19323841",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"order",
+								"6470e6f4805464ca19323841"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:5000/api/v1",
+			"type": "string"
+		}
+	]
+}
