@@ -1,6 +1,7 @@
 import Review from '../models/review.js'
 import Product from '../models/product.js'
 import BadRequestError from '../errors/bad-request.js'
+import NotFoundError from '../errors/not-found.js'
 import { checkPermission } from '../utils/jwt.js'
 import { StatusCodes } from 'http-status-codes'
 
@@ -8,7 +9,7 @@ export const createReview = async (req, res) => {
   const { product: productId } = req.body
   const isValidProduct = await Product.findOne({ _id: productId })
   if (!isValidProduct) {
-    throw new BadRequestError('No product with id: ' + productId)
+    throw new NotFoundError('No product with id: ' + productId)
   }
 
   const alreadySubmitted = await Review.findOne({
@@ -35,7 +36,7 @@ export const getReviews = async (_, res) => {
 export const getReview = async (req, res) => {
   const review = await Review.findById(req.params.id)
   if (!review) {
-    throw new BadRequestError(`There is no review with id: ${req.params.id}`)
+    throw new NotFoundError(`There is no review with id: ${req.params.id}`)
   }
   res.status(StatusCodes.OK).json({ review })
 }
@@ -45,7 +46,7 @@ export const updateReview = async (req, res) => {
   const { title, comment, rating } = req.body
   const review = await Review.findById(id)
   if (!review) {
-    throw new BadRequestError(`There is no review with id: ${id}`)
+    throw new NotFoundError(`There is no review with id: ${id}`)
   }
 
   checkPermission(req.user, review.user)
@@ -62,7 +63,7 @@ export const deleteReview = async (req, res) => {
   const { id } = req.params
   const review = await Review.findById(id)
   if (!review) {
-    throw new BadRequestError(`There is no review with id: ${id}`)
+    throw new NotFoundError(`There is no review with id: ${id}`)
   }
 
   checkPermission(req.user, review.user)

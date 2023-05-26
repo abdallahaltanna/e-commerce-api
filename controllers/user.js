@@ -1,6 +1,7 @@
 import { StatusCodes } from 'http-status-codes'
 import User from '../models/user.js'
 import BadRequestError from '../errors/bad-request.js'
+import NotFoundError from '../errors/not-found.js'
 import {
   createTokenUser,
   attachCookiesToResponse,
@@ -55,7 +56,7 @@ export const updateUserPassword = async (req, res) => {
 export const getSingleUser = async (req, res) => {
   const user = await User.findOne({ _id: req.params.id }).select('-password')
   if (!user) {
-    throw new BadRequestError('No user with id: ' + id)
+    throw new NotFoundError('No user with id: ' + id)
   }
   checkPermission(req.user, user._id)
   res.status(StatusCodes.OK).json({ user })

@@ -1,5 +1,6 @@
 import Product from '../models/product.js'
 import BadRequestError from '../errors/bad-request.js'
+import NotFoundError from '../errors/not-found.js'
 import { v2 as cloudinary } from 'cloudinary'
 import fs from 'fs'
 import { StatusCodes } from 'http-status-codes'
@@ -28,7 +29,7 @@ export const uploadImage = async (req, res) => {
   const product = await Product.findById(id)
 
   if (!product) {
-    throw new BadRequestError(`There is no product with id: ${id}`)
+    throw new NotFoundError(`There is no product with id: ${id}`)
   }
 
   if (!req.files) {
@@ -63,7 +64,7 @@ export const updateProduct = async (req, res) => {
   })
 
   if (!product) {
-    throw new BadRequestError(`There is no product with id: ${req.params.id}`)
+    throw new NotFoundError(`There is no product with id: ${req.params.id}`)
   }
 
   res.status(StatusCodes.OK).json({ product })
@@ -74,7 +75,7 @@ export const deleteProduct = async (req, res) => {
 
   const product = await Product.findByIdAndRemove(productId)
   if (!product) {
-    throw new BadRequestError(`There is no product with id: ${req.params.id}`)
+    throw new NotFoundError(`There is no product with id: ${req.params.id}`)
   }
 
   res.status(StatusCodes.OK).json({ msg: 'Success! Product removed.' })
